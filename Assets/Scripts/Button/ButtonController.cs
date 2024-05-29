@@ -69,7 +69,7 @@ public class ButtonController : MonoBehaviour
     /// </summary>
     private void OnLClick()
     {
-        Debug.Log("LClick 실행");
+        //Debug.Log("LClick 실행");
         if (leftReadyText.gameObject.activeSelf)                 // leftReadText가 활성화 상태일때만 실행
         {
             leftButton.image.color = zeroAlphaColor;            // 왼쪽 버튼의 알파를 0으로 설정
@@ -78,7 +78,7 @@ public class ButtonController : MonoBehaviour
 
         if (canJump)
         {
-            Debug.Log("왼쪽 점프");
+            //Debug.Log("왼쪽 점프");
             onLeftJump?.Invoke();
             // 애니메이션을 바꾸면서 점프하는 부분 필요
         }
@@ -91,7 +91,7 @@ public class ButtonController : MonoBehaviour
     /// </summary>
     private void OnRClick()
     {
-        Debug.Log("RClick 실행");
+        //Debug.Log("RClick 실행");
         if (rightReadyText.gameObject.activeSelf)                 // rightReadyText 활성화 상태일때만 실행
         {
             rightButton.image.color = zeroAlphaColor;            // 오른쪽 버튼의 알파를 0으로 설정
@@ -100,7 +100,7 @@ public class ButtonController : MonoBehaviour
 
         if (canJump)
         {
-            Debug.Log("오른쪽 점프");
+            //Debug.Log("오른쪽 점프");
             onRightJump?.Invoke();
             // 애니메이션을 바꾸면서 점프하는 부분 필요
         }
