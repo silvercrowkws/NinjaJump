@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - LeftVcam
+  - Ground
+  - RightVcam
   layers:
   - Default
   - TransparentFX
@@ -44,4 +47,7 @@ TagManager:
     locked: 0
   - name: Wall
     uniqueID: 801905665
+    locked: 0
+  - name: Player
+    uniqueID: 2063645061
     locked: 0
