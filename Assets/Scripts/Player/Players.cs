@@ -36,8 +36,14 @@ public class Players : MonoBehaviour
     /// </summary>
     Rigidbody2D rightRigidbody;
 
+    /// <summary>
+    /// 왼쪽 플레이어의 트랜스폼
+    /// </summary>
     Transform leftPosition;
 
+    /// <summary>
+    /// 오른쪽 플레이어의 트랜스폼
+    /// </summary>
     Transform rightPosition;
 /*
     /// <summary>
@@ -98,13 +104,17 @@ public class Players : MonoBehaviour
         leftRigidbody = leftPlayer.GetComponent<Rigidbody2D>();
         //leftCollider = leftPlayer.GetComponent<Collider2D>();
         //leftPosition = leftPlayer.transform;
-        
+
+        // 왼쪽 플레이어의 트랜스폼 찾기
+        leftPosition = leftPlayer.transform;
 
         child = transform.GetChild(1);                                  // 1번째 자식 rightPlayer
         rightPlayer = child.gameObject;
         rightPlayerAnimator = rightPlayer.GetComponent<Animator>();
         rightRigidbody = rightPlayer.GetComponent<Rigidbody2D>();
         //rightCollider = leftPlayer.GetComponent<Collider2D>();
+        
+        // 오른쪽 플레이어의 트랜스폼 찾기
         rightPosition = rightPlayer.transform;
     }
 
@@ -120,28 +130,19 @@ public class Players : MonoBehaviour
         // 찾은 카메라의 Follow를 leftPosition으로 설정
         leftVcam.LookAt = leftPlayer.transform;
 
-        leftPosition = leftPlayer.transform;
-
         // 'RightVcam' 태그를 가진 CinemachineVirtualCamera를 찾음
         rightVcam = GameObject.FindGameObjectWithTag("RightVcam").GetComponent<CinemachineVirtualCamera>();
 
         // 찾은 카메라의 Follow를 rightPosition으로 설정
         rightVcam.LookAt = rightPlayer.transform;
-
-        rightPosition = leftPlayer.transform;
     }
 
     private void Update()
     {
-        //rightVcam.transform.position = new Vector3(rightPosition.position.x, rightPosition.position.y, rightPosition.position.z);
-        // 'LeftVcam' 태그를 가진 CinemachineVirtualCamera를 찾음
-        //CinemachineVirtualCamera leftVcam = GameObject.FindGameObjectWithTag("LeftVcam").GetComponent<CinemachineVirtualCamera>();
-        //leftPosition = leftPlayer.transform;
+        // leftVcam의 위치 조절
         leftVcam.transform.position = new Vector3(-5, leftPosition.position.y, -10);
 
-        // 'RightVcam' 태그를 가진 CinemachineVirtualCamera를 찾음
-        //CinemachineVirtualCamera rightVcam = GameObject.FindGameObjectWithTag("RightVcam").GetComponent<CinemachineVirtualCamera>();
-        //rightPosition = leftPlayer.transform;
+        // rightVcam의 위치 조절
         rightVcam.transform.position = new Vector3(5, rightPosition.position.y, -10);
     }
 
