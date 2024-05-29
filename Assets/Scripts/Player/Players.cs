@@ -120,11 +120,15 @@ public class Players : MonoBehaviour
         // 찾은 카메라의 Follow를 leftPosition으로 설정
         leftVcam.LookAt = leftPlayer.transform;
 
+        leftPosition = leftPlayer.transform;
+
         // 'RightVcam' 태그를 가진 CinemachineVirtualCamera를 찾음
         rightVcam = GameObject.FindGameObjectWithTag("RightVcam").GetComponent<CinemachineVirtualCamera>();
 
         // 찾은 카메라의 Follow를 rightPosition으로 설정
         rightVcam.LookAt = rightPlayer.transform;
+
+        rightPosition = leftPlayer.transform;
     }
 
     private void Update()
@@ -132,12 +136,12 @@ public class Players : MonoBehaviour
         //rightVcam.transform.position = new Vector3(rightPosition.position.x, rightPosition.position.y, rightPosition.position.z);
         // 'LeftVcam' 태그를 가진 CinemachineVirtualCamera를 찾음
         //CinemachineVirtualCamera leftVcam = GameObject.FindGameObjectWithTag("LeftVcam").GetComponent<CinemachineVirtualCamera>();
-        leftPosition = leftPlayer.transform;
+        //leftPosition = leftPlayer.transform;
         leftVcam.transform.position = new Vector3(-5, leftPosition.position.y, -10);
 
         // 'RightVcam' 태그를 가진 CinemachineVirtualCamera를 찾음
         //CinemachineVirtualCamera rightVcam = GameObject.FindGameObjectWithTag("RightVcam").GetComponent<CinemachineVirtualCamera>();
-        rightPosition = leftPlayer.transform;
+        //rightPosition = leftPlayer.transform;
         rightVcam.transform.position = new Vector3(5, rightPosition.position.y, -10);
     }
 
