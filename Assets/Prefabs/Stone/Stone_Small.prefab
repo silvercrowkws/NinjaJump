@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6782369903058864135}
   - component: {fileID: 8142063151236176581}
   - component: {fileID: 904777252047733883}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Stone_Small
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -118,9 +118,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.052390218, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.7338885
+  m_Radius: 0.3
 --- !u!50 &904777252047733883
 Rigidbody2D:
   serializedVersion: 4
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357438283348890465}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0

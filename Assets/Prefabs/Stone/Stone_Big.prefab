@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 141852553854845052}
   - component: {fileID: 6594600180362320173}
   - component: {fileID: 2036072960697656709}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Stone_Big
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6397927757740841884}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
