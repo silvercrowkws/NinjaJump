@@ -9,6 +9,11 @@ public class PlayerControll : MonoBehaviour
 
     Rigidbody2D rigid;
 
+    /// <summary>
+    /// 플레이어와 적이 충돌했을 때 적이 사라지기를 기다리는 시간
+    /// </summary>
+    readonly float delay = 1.0f;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -55,9 +60,9 @@ public class PlayerControll : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("왼쪽 플레이어와 적이 충돌");
+            Debug.Log("플레이어와 적이 충돌");
 
-            StartCoroutine(DestroyEnemy(1.0f, collision.gameObject));
+            StartCoroutine(DestroyEnemy(collision.gameObject));
         }
     }
 
@@ -67,7 +72,7 @@ public class PlayerControll : MonoBehaviour
     /// <param name="delay"></param>
     /// <param name="enemy"></param>
     /// <returns></returns>
-    IEnumerator DestroyEnemy(float delay, GameObject enemy)
+    IEnumerator DestroyEnemy(GameObject enemy)
     {
         yield return new WaitForSeconds(delay);
         Destroy(enemy);
