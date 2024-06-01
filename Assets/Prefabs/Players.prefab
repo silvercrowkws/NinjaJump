@@ -1219,10 +1219,10 @@ GameObject:
   - component: {fileID: 7964169922879710309}
   - component: {fileID: 2904038132978319808}
   - component: {fileID: 8022566186627472307}
-  - component: {fileID: 4416654684200098016}
+  - component: {fileID: 1705727428583499884}
   m_Layer: 6
   m_Name: Rogue_01
-  m_TagString: Untagged
+  m_TagString: RightPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1381,7 +1381,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4416654684200098016
+--- !u!114 &1705727428583499884
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1390,7 +1390,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3111101187089663463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 566f39a8ff70b5643a1616523742ba98, type: 3}
+  m_Script: {fileID: 11500000, guid: 10662f65440280a4ebaaf5fc7533bf88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3157580345510059090
@@ -2528,7 +2528,7 @@ GameObject:
   - component: {fileID: 3577715208059222137}
   m_Layer: 6
   m_Name: Rogue_06
-  m_TagString: Untagged
+  m_TagString: LeftPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
