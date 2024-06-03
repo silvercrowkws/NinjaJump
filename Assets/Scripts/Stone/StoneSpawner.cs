@@ -53,7 +53,7 @@ public class StoneSpawner : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
-        gameManager.GameState = GameState.Play;
+        //gameManager.GameState = GameState.Play;
     }
 
     private void Update()

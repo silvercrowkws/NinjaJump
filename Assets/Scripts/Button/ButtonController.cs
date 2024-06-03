@@ -117,6 +117,7 @@ public class ButtonController : MonoBehaviour
         if (!leftReadyText.gameObject.activeSelf && !rightReadyText.gameObject.activeSelf)
         {
             canJump = true;
+            GameManager.Instance.GameState = GameState.Play;
         }
     }
 
