@@ -28,15 +28,15 @@ public class PlayerControll : MonoBehaviour
     {
         if (collision.CompareTag("Wall") || collision.CompareTag("Ground")) // 충돌한 대상이 Wall 또는 Ground이면
         {
-            if (this.gameObject.CompareTag("LeftPlayer")) // 이 오브젝트의 태그가 LeftPlayer이면
+            if (this.gameObject.CompareTag("LeftPlayer"))                   // 이 오브젝트의 태그가 LeftPlayer이면
             {
-                players.isLeftJumpAble = true;
+                players.isLeftJumpAble = true;                              // isLeftJumpAble  = true
             }
-            else if (this.gameObject.CompareTag("RightPlayer")) // 이 오브젝트가 RightPlayer이면
+            else if (this.gameObject.CompareTag("RightPlayer"))             // 이 오브젝트가 RightPlayer이면
             {
-                players.isRightJumpAble = true;
+                players.isRightJumpAble = true;                             // isRightJumpAble  = true
             }
-            rigid.gravityScale = 0.3f;
+            rigid.gravityScale = 0.3f;                                      // 중력 줄이기
         }
     }
 
@@ -44,15 +44,15 @@ public class PlayerControll : MonoBehaviour
     {
         if (collision.CompareTag("Wall") || collision.CompareTag("Ground")) // 충돌한 대상이 Wall 또는 Ground이면
         {
-            if (this.gameObject.CompareTag("LeftPlayer")) // 이 오브젝트가 LeftPlayer이면
+            if (this.gameObject.CompareTag("LeftPlayer"))                   // 이 오브젝트가 LeftPlayer이면
             {
-                players.isLeftJumpAble = false;
+                players.isLeftJumpAble = false;                             // isLeftJumpAble = false
             }
-            else if (this.gameObject.CompareTag("RightPlayer")) // 이 오브젝트가 RightPlayer이면
+            else if (this.gameObject.CompareTag("RightPlayer"))             // 이 오브젝트가 RightPlayer이면
             {
-                players.isRightJumpAble = false;
+                players.isRightJumpAble = false;                            // isRightJumpAble = false
             }
-            rigid.gravityScale = 1.0f;
+            rigid.gravityScale = 1.0f;                                      // 중력 원래대로
         }
     }
 

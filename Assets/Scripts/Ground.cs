@@ -10,7 +10,7 @@ public class Ground : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("바닥과 적의 충돌 확인");
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject);      // 바닥과 충돌한 Enemy 오브젝트 삭제
         }
     }
 }
