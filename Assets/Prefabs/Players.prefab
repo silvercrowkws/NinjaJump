@@ -2032,6 +2032,8 @@ MonoBehaviour:
   jumpPower: 6
   isLeftJumpAble: 0
   isRightJumpAble: 0
+  forceLeftDirection: {x: 0, y: 0}
+  forceRightDirection: {x: 0, y: 0}
 --- !u!1 &4200569412106242561
 GameObject:
   m_ObjectHideFlags: 0

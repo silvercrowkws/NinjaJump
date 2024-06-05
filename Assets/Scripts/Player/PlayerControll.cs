@@ -64,6 +64,33 @@ public class PlayerControll : MonoBehaviour
 
             StartCoroutine(DestroyEnemy(collision.gameObject));
         }
+        else if (collision.gameObject.CompareTag("Spike"))
+        {
+            if (this.gameObject.CompareTag("LeftPlayer"))                   // 이 오브젝트의 태그가 LeftPlayer이면
+            {
+                Debug.Log("LeftPlayer와 가시가 충돌");
+                players.isLeftJumpAble = false;                             // isLeftJumpAble = false
+
+                // 이전에 가해지던 힘 제거하고
+                rigid.velocity = Vector2.zero;
+
+                rigid.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+                rigid.AddForce(Vector2.right * 5, ForceMode2D.Impulse);
+                rigid.AddForce(-players.forceLeftDirection * 10, ForceMode2D.Impulse);
+            }
+            else if (this.gameObject.CompareTag("RightPlayer"))             // 이 오브젝트가 RightPlayer이면
+            {
+                Debug.Log("RightPlayer와 가시가 충돌");
+                players.isRightJumpAble = false;                            // isRightJumpAble = false
+
+                // 이전에 가해지던 힘 제거하고
+                rigid.velocity = Vector2.zero;
+
+                rigid.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+                rigid.AddForce(Vector2.right * 5, ForceMode2D.Impulse);
+                rigid.AddForce(-players.forceRightDirection * 10, ForceMode2D.Impulse);
+            }
+        }
     }
 
     /// <summary>

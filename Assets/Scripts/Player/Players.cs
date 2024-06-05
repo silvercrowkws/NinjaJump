@@ -146,6 +146,10 @@ public class Players : MonoBehaviour
         rightVcam.transform.position = new Vector3(5, rightPosition.position.y, -10);
     }
 
+
+    public Vector2 forceLeftDirection;
+
+    public Vector2 forceRightDirection;
     /// <summary>
     /// onLeftJump 델리게이트를 받아 점프를 실행시킬 함수
     /// </summary>
@@ -172,16 +176,16 @@ public class Players : MonoBehaviour
             leftPlayer.transform.rotation = Quaternion.Euler(0f, targetRotationY, 0f);
 
             // 회전된 방향으로 힘을 가하기 위해 회전된 방향 벡터를 계산
-            //Vector2 forceDirection = leftPlayer.transform.forward;
+            //Vector2 forceLeftDirection = leftPlayer.transform.forward;
 
             // 왼쪽 플레이어의 경우
-            Vector2 forceDirection = Vector2.left * leftDirection;
+            forceLeftDirection = Vector2.left * leftDirection;
 
             // 이전에 가해지던 힘 제거하고
             leftRigidbody.velocity = Vector2.zero;
 
             // 플레이어의 Rigidbody에 힘을 가한다
-            leftRigidbody.AddForce(forceDirection * jumpSpeed, ForceMode2D.Impulse);
+            leftRigidbody.AddForce(forceLeftDirection * jumpSpeed, ForceMode2D.Impulse);
             leftRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
             // 클릭 횟수 증가
@@ -215,16 +219,16 @@ public class Players : MonoBehaviour
             rightPlayer.transform.rotation = Quaternion.Euler(0f, targetRotationY, 0f);
 
             // 회전된 방향으로 힘을 가하기 위해 회전된 방향 벡터를 계산
-            //Vector2 forceDirection = leftPlayer.transform.forward;
+            //Vector2 forceLeftDirection = leftPlayer.transform.forward;
 
-            // 왼쪽 플레이어의 경우
-            Vector2 forceDirection = Vector2.right * rightDirection;
+            // 오른쪽 플레이어의 경우
+            forceRightDirection = Vector2.right * rightDirection;
 
             // 이전에 가해지던 힘 제거하고
             rightRigidbody.velocity = Vector2.zero;
 
             // 플레이어의 Rigidbody에 힘을 가한다
-            rightRigidbody.AddForce(forceDirection * jumpSpeed, ForceMode2D.Impulse);
+            rightRigidbody.AddForce(forceRightDirection * jumpSpeed, ForceMode2D.Impulse);
             rightRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
             // 클릭 횟수 증가

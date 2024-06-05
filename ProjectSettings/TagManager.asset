@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - LeftPlayer
   - RightPlayer
+  - Spike
   layers:
   - Default
   - TransparentFX
