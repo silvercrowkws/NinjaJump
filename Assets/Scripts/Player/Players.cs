@@ -6,15 +6,11 @@ using UnityEngine;
 
 public class Players : MonoBehaviour
 {
+    // 왼쪽 -------------------------------------------------------------------------------------------------------
     /// <summary>
     /// 왼쪽에 위치한 플레이어
     /// </summary>
     GameObject leftPlayer;
-
-    /// <summary>
-    /// 오른쪽에 위치한 플레이어
-    /// </summary>
-    GameObject rightPlayer;
 
     /// <summary>
     /// 왼쪽 플레이어의 애니메이터
@@ -22,19 +18,9 @@ public class Players : MonoBehaviour
     Animator leftPlayerAnimator;
 
     /// <summary>
-    /// 오른쪽 플레이어의 애니메이터
-    /// </summary>
-    Animator rightPlayerAnimator;
-
-    /// <summary>
     /// 왼쪽 플레이어의 리지드바디
     /// </summary>
     Rigidbody2D leftRigidbody;
-
-    /// <summary>
-    /// 오른쪽 플레이어의 리지드바디
-    /// </summary>
-    Rigidbody2D rightRigidbody;
 
     /// <summary>
     /// 왼쪽 플레이어의 트랜스폼
@@ -42,29 +28,9 @@ public class Players : MonoBehaviour
     Transform leftPosition;
 
     /// <summary>
-    /// 오른쪽 플레이어의 트랜스폼
-    /// </summary>
-    Transform rightPosition;
-/*
-    /// <summary>
-    /// 왼쪽 플레이어의 콜라이더
-    /// </summary>
-    Collider2D leftCollider;
-
-    /// <summary>
-    /// 오른쪽 플레이어의 콜라이더
-    /// </summary>
-    Collider2D rightCollider;
-*/
-    /// <summary>
     /// 왼쪽 버튼의 클릭 횟수를 저장하기 위한 변수
     /// </summary>
     private int leftClickCount = 0;
-
-    /// <summary>
-    /// 오른쪽 버튼의 클릭 횟수를 저장하기 위한 변수
-    /// </summary>
-    private int rightClickCount = 0;
 
     /// <summary>
     /// 왼쪽 캐릭터의 방향을 지정하기 위한 변수
@@ -72,9 +38,58 @@ public class Players : MonoBehaviour
     int leftDirection = 1;
 
     /// <summary>
+    /// 바닥이나 벽에 충돌하여 점프가 가능한지 확인하기 위한 bool 변수
+    /// </summary>
+    public bool isLeftJumpAble = false;
+
+    /// <summary>
+    /// 씨네머신 카메라
+    /// </summary>
+    CinemachineVirtualCamera leftVcam;
+
+    // 오른쪽 -----------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// 오른쪽에 위치한 플레이어
+    /// </summary>
+    GameObject rightPlayer;
+
+    /// <summary>
+    /// 오른쪽 플레이어의 애니메이터
+    /// </summary>
+    Animator rightPlayerAnimator;
+
+    /// <summary>
+    /// 오른쪽 플레이어의 리지드바디
+    /// </summary>
+    Rigidbody2D rightRigidbody;
+
+    /// <summary>
+    /// 오른쪽 플레이어의 트랜스폼
+    /// </summary>
+    Transform rightPosition;
+
+    /// <summary>
+    /// 오른쪽 버튼의 클릭 횟수를 저장하기 위한 변수
+    /// </summary>
+    private int rightClickCount = 0;
+
+    /// <summary>
     /// 오른쪽 캐릭터의 방향을 지정하기 위한 변수
     /// </summary>
     int rightDirection = -1;
+
+    /// <summary>
+    /// 바닥이나 벽에 충돌하여 점프가 가능한지 확인하기 위한 bool 변수
+    /// </summary>
+    public bool isRightJumpAble = false;
+
+    /// <summary>
+    /// 씨네머신 카메라
+    /// </summary>
+    CinemachineVirtualCamera rightVcam;
+
+    // 공통 -------------------------------------------------------------------------------------------------------
 
     /// <summary>
     /// 점프 스피드
@@ -86,24 +101,12 @@ public class Players : MonoBehaviour
     /// </summary>
     public float jumpPower;
 
-    /// <summary>
-    /// 바닥이나 벽에 충돌하여 점프가 가능한지 확인하기 위한 bool 변수
-    /// </summary>
-    public bool isLeftJumpAble = false;
-    public bool isRightJumpAble = false;
-
-    // 씨네머신 카메라
-    CinemachineVirtualCamera leftVcam;
-    CinemachineVirtualCamera rightVcam;
-
     private void Awake()
     {
         Transform child = transform.GetChild(0);                        // 0번째 자식 leftPlayer
         leftPlayer = child.gameObject;
         leftPlayerAnimator = leftPlayer.GetComponent<Animator>();
         leftRigidbody = leftPlayer.GetComponent<Rigidbody2D>();
-        //leftCollider = leftPlayer.GetComponent<Collider2D>();
-        //leftPosition = leftPlayer.transform;
 
         // 왼쪽 플레이어의 트랜스폼 찾기
         leftPosition = leftPlayer.transform;
@@ -112,7 +115,6 @@ public class Players : MonoBehaviour
         rightPlayer = child.gameObject;
         rightPlayerAnimator = rightPlayer.GetComponent<Animator>();
         rightRigidbody = rightPlayer.GetComponent<Rigidbody2D>();
-        //rightCollider = leftPlayer.GetComponent<Collider2D>();
         
         // 오른쪽 플레이어의 트랜스폼 찾기
         rightPosition = rightPlayer.transform;
@@ -135,6 +137,9 @@ public class Players : MonoBehaviour
 
         // 찾은 카메라의 Follow를 rightPosition으로 설정
         rightVcam.LookAt = rightPlayer.transform;
+
+        Goal goal = FindAnyObjectByType<Goal>();
+        goal.onGoal += (_) => RigidKinematic();
     }
 
     private void Update()
@@ -234,5 +239,16 @@ public class Players : MonoBehaviour
             // 클릭 횟수 증가
             rightClickCount++;
         }
+    }
+
+    private void RigidKinematic()
+    {
+        // 가해지던 힘 제거
+        leftRigidbody.velocity = Vector2.zero;
+        rightRigidbody.velocity = Vector2.zero;
+
+        // 리지드바디 키네틱으로 설정
+        leftRigidbody.isKinematic = true;
+        rightRigidbody.isKinematic = true;
     }
 }

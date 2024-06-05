@@ -10,8 +10,7 @@ public enum GameState : byte
 {
     None = 0,
     Play,
-    Lose,
-    Win
+    Goal
 }
 
 public class GameManager : Singleton<GameManager>

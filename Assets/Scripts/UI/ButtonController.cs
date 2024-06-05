@@ -117,7 +117,7 @@ public class ButtonController : MonoBehaviour
         if (!leftReadyText.gameObject.activeSelf && !rightReadyText.gameObject.activeSelf)
         {
             canJump = true;
-            GameManager.Instance.GameState = GameState.Play;
+            GameManager.Instance.GameState = GameState.Play;        // 여기서 바꾸는게 아니라 321 카운트 다운 UI 후에 바꿔야함
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,7 @@ public class StoneSpawner : MonoBehaviour
     /// <summary>
     /// 게임을 플레이한 시간
     /// </summary>
-    private int playerTime;
+    private int playTime;
 
     /// <summary>
     /// 누적할 시간
@@ -36,6 +37,11 @@ public class StoneSpawner : MonoBehaviour
     /// 1초가 지났는지 확인할 시간
     /// </summary>
     private float interval = 1f;
+
+    /// <summary>
+    /// 플레이시간을 알리는 델리게이트
+    /// </summary>
+    public Action<int> onPlayTime;
 
     private void Awake()
     {
@@ -70,10 +76,11 @@ public class StoneSpawner : MonoBehaviour
             if(elapsedTime > interval)                      // 1초마다
             {
                 elapsedTime = 0f;                           // 누적 시간을 0으로 초기화
-                playerTime++;                               // 플레이시간 1초 증가
-                Debug.Log("Player Time: " + playerTime);
+                playTime++;                                 // 플레이시간 1초 증가
+                onPlayTime?.Invoke(playTime);
+                Debug.Log("Player Time: " + playTime);
 
-                if(playerTime > 1 && playerTime % 3 == 0)   // 3초마다(if문이 playerTime이 0초일때 실행되는 것 방지)
+                if(playTime > 1 && playTime % 3 == 0)   // 3초마다(if문이 playerTime이 0초일때 실행되는 것 방지)
                 {
                     Debug.Log("돌 생성");
                     StartCoroutine(Spawn());
@@ -89,16 +96,16 @@ public class StoneSpawner : MonoBehaviour
     IEnumerator Spawn()
     {
         // 랜덤한 위치 계산
-        Vector3 randomLeftPos = new Vector3(Random.Range(leftBound.min.x, leftBound.max.x), Random.Range(leftBound.min.y, leftBound.max.y), 0f);
-        Vector3 randomRightPos = new Vector3(Random.Range(rightBound.min.x, rightBound.max.x), Random.Range(rightBound.min.y, rightBound.max.y), 0f);
+        Vector3 randomLeftPos = new Vector3(UnityEngine.Random.Range(leftBound.min.x, leftBound.max.x), UnityEngine.Random.Range(leftBound.min.y, leftBound.max.y), 0f);
+        Vector3 randomRightPos = new Vector3(UnityEngine.Random.Range(rightBound.min.x, rightBound.max.x), UnityEngine.Random.Range(rightBound.min.y, rightBound.max.y), 0f);
 
         // 랜덤한 위치에 돌 생성
         Instantiate(stoneBig, randomLeftPos, Quaternion.identity);
         Instantiate(stoneBig, randomRightPos, Quaternion.identity);
 
         // 다른 랜덤한 위치 계산
-        randomLeftPos = new Vector3(Random.Range(leftBound.min.x, leftBound.max.x), Random.Range(leftBound.min.y, leftBound.max.y), 0f);
-        randomRightPos = new Vector3(Random.Range(rightBound.min.x, rightBound.max.x), Random.Range(rightBound.min.y, rightBound.max.y), 0f);
+        randomLeftPos = new Vector3(UnityEngine.Random.Range(leftBound.min.x, leftBound.max.x), UnityEngine.Random.Range(leftBound.min.y, leftBound.max.y), 0f);
+        randomRightPos = new Vector3(UnityEngine.Random.Range(rightBound.min.x, rightBound.max.x), UnityEngine.Random.Range(rightBound.min.y, rightBound.max.y), 0f);
 
         // 다른 랜덤한 위치에 돌 생성
         Instantiate(stoneSmall, randomLeftPos, Quaternion.identity);
