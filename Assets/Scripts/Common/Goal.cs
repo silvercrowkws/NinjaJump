@@ -24,6 +24,9 @@ public class Goal : MonoBehaviour
     {
         if (!collision.CompareTag("Enemy"))
         {
+            GameManager gameManager = GameManager.Instance;
+            gameManager.GameState = GameState.Goal;
+
             if (collision.CompareTag("LeftPlayer"))             // LeftPlayer가 골인
             {
                 leftParticle.Play();
@@ -33,8 +36,6 @@ public class Goal : MonoBehaviour
                 rightParticle.Play();
             }
             onGoal?.Invoke(collision.gameObject.name);
-            GameManager gameManager = GameManager.Instance;
-            gameManager.GameState = GameState.Goal;
         }
     }
 }
