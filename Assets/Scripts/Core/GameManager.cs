@@ -9,6 +9,7 @@ using UnityEngine.InputSystem.XInput;
 public enum GameState : byte
 {
     None = 0,
+    Count,
     Play,
     Goal
 }

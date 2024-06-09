@@ -27,19 +27,30 @@ public class GoalPanel : MonoBehaviour
         playTimeText = child.GetComponent<TextMeshProUGUI>();
     }
 
-    private void OnPlayTime(int time)
-    {
-        playTimeText.text = $"{time}";      // 게임이 끝나면 시간도 멈추는 부분 필요
-    }
-
     private void Start()
     {
-        this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);       // 이 게임 오브젝트 비활성화
     }
 
+    /// <summary>
+    /// 골인시 어느 플레이어가 골인했는지 이름을 표시하는 함수
+    /// </summary>
+    /// <param name="name"></param>
     private void OnGoal(string name)
     {
-        this.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);        // 이 게임 오브젝트 활성화
         playerName.text = $"{name}";
+    }
+
+    /// <summary>
+    /// 골인 시 플레이 타임을 표시하는 함수
+    /// </summary>
+    /// <param name="time"></param>
+    private void OnPlayTime(int time)
+    {
+        if (GameManager.Instance.GameState == GameState.Play)               // 게임의 상태가 Play일 때만 갱신
+        {
+            playTimeText.text = $"{time}";
+        }
     }
 }

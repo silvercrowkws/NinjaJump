@@ -37,7 +37,7 @@ public class ButtonController : MonoBehaviour
     /// <summary>
     /// 게임이 시작되어 점프가 가능한지 확인하기 위한 bool 변수
     /// </summary>
-    bool canJump = false;
+    public bool canJump = false;
 
     /// <summary>
     /// 왼쪽 버튼이 눌려져 점프되었음을 알리는 델리게이트
@@ -114,12 +114,19 @@ public class ButtonController : MonoBehaviour
     private void OnStart()
     {
         // leftReadyText와 rightReadyText가 비활성화 상태이다 => 양 쪽 모두 클릭이 된 상태이다
-        if (!leftReadyText.gameObject.activeSelf && !rightReadyText.gameObject.activeSelf)
+        if (!leftReadyText.gameObject.activeSelf && !rightReadyText.gameObject.activeSelf && GameManager.Instance.GameState == GameState.None)
+        {
+            onReady?.Invoke();
+        }
+
+        if (GameManager.Instance.GameState == GameState.Play)
         {
             canJump = true;
-            GameManager.Instance.GameState = GameState.Play;        // 여기서 바꾸는게 아니라 321 카운트 다운 UI 후에 바꿔야함
         }
     }
 
-
+    /// <summary>
+    /// 게임 준비가 되었음을 알리는 델리게이트(321 카운트다운 시작용)
+    /// </summary>
+    public Action onReady;
 }

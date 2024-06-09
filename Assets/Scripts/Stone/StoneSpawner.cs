@@ -67,23 +67,26 @@ public class StoneSpawner : MonoBehaviour
         StoneSpawn();
     }
 
+    /// <summary>
+    /// 일정 시간마다 돌을 소환하는 함수
+    /// </summary>
     public void StoneSpawn()
     {
         if (gameManager.GameState == GameState.Play)        // 게임이 시작되었으면
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.deltaTime;                  // elapsedTime에 시간 누적
 
-            if(elapsedTime > interval)                      // 1초마다
+            if (elapsedTime > interval)                     // elapsedTime이 interval(1초) 보다 크면
             {
-                elapsedTime = 0f;                           // 누적 시간을 0으로 초기화
+                elapsedTime = 0f;                           // elapsedTime(누적 시간)을 0으로 초기화
                 playTime++;                                 // 플레이시간 1초 증가
-                onPlayTime?.Invoke(playTime);
+                onPlayTime?.Invoke(playTime);               // 플레이시간을 델리게이트로 알림
                 Debug.Log("Player Time: " + playTime);
 
-                if(playTime > 1 && playTime % 3 == 0)   // 3초마다(if문이 playerTime이 0초일때 실행되는 것 방지)
+                if(playTime > 1 && playTime % 3 == 0)       // 3초마다(if문이 playerTime이 0초일때 실행되는 것 방지로 playTime > 1 넣음)
                 {
                     Debug.Log("돌 생성");
-                    StartCoroutine(Spawn());
+                    StartCoroutine(Spawn());                // Spawn 코루틴 실행
                 }
             }
         }
