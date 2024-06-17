@@ -446,7 +446,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 313dd621926678e4e8aba61c8f63f85e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11350,9 +11350,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1404887504477666997, guid: 19b9ce1fd18178c4cbe07dc1dc50c1a5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1872108275229092978, guid: 19b9ce1fd18178c4cbe07dc1dc50c1a5, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137907893558405562, guid: 19b9ce1fd18178c4cbe07dc1dc50c1a5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3113237865783991357, guid: 19b9ce1fd18178c4cbe07dc1dc50c1a5, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -12278,6 +12286,10 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 4000011159847289}
+    - target: {fileID: 4562071544366437155, guid: 9e08023bf8bee3140b06a214931d256c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5192923976673277699, guid: 9e08023bf8bee3140b06a214931d256c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12317,6 +12329,10 @@ PrefabInstance:
     - target: {fileID: 5192923976673277699, guid: 9e08023bf8bee3140b06a214931d256c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7575487839345782040, guid: 9e08023bf8bee3140b06a214931d256c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8554308822270878246, guid: 9e08023bf8bee3140b06a214931d256c, type: 3}
       propertyPath: m_LookAt

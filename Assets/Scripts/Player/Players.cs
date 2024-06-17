@@ -145,10 +145,10 @@ public class Players : MonoBehaviour
     private void Update()
     {
         // leftVcam의 위치 조절
-        leftVcam.transform.position = new Vector3(-5, leftPosition.position.y, -10);
+        leftVcam.transform.position = new Vector3(-5.5f, leftPosition.position.y, -10);
 
         // rightVcam의 위치 조절
-        rightVcam.transform.position = new Vector3(5, rightPosition.position.y, -10);
+        rightVcam.transform.position = new Vector3(5.5f, rightPosition.position.y, -10);
     }
 
 
